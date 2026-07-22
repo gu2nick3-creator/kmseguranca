@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, MessageCircle } from "lucide-react";
 import logoKm from "@/assets/km-logo.png";
+import { trackEvent } from "@/lib/analytics";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
 
 const navLinks = [
   { label: "Início", href: "/" },
@@ -12,7 +14,7 @@ const navLinks = [
   { label: "Contato", href: "/contato" },
 ];
 
-const WHATSAPP_URL = "https://wa.me/5511964427943?text=Olá! Gostaria de solicitar um atendimento.";
+const WHATSAPP_URL = buildWhatsAppUrl("Olá! Gostaria de solicitar um atendimento.");
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -49,8 +51,8 @@ export default function Navbar() {
             <span className="block text-lg font-bold text-foreground tracking-tight leading-none">
               KM <span className="text-accent">Segurança</span>
             </span>
-            <span className="hidden sm:block text-[11px] text-muted-foreground tracking-[0.22em] uppercase mt-1">
-              SST e Meio Ambiente
+            <span className="hidden sm:block text-[11px] text-muted-foreground tracking-[0.18em] uppercase mt-1">
+              Segurança do Trabalho e Meio Ambiente
             </span>
           </div>
         </Link>
@@ -79,6 +81,7 @@ export default function Navbar() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={() => trackEvent("whatsapp_click", { local: "navbar_desktop" })}
           className="hidden lg:inline-flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold 
             shadow-md shadow-green-600/20 hover:shadow-lg hover:shadow-green-600/30 
             transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]"
@@ -122,6 +125,7 @@ export default function Navbar() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", { local: "navbar_mobile" })}
             className="flex items-center justify-center gap-2 mt-3 bg-accent text-accent-foreground px-5 py-3 rounded-lg text-sm font-semibold"
           >
             <MessageCircle className="w-4 h-4" />

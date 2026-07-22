@@ -1,6 +1,8 @@
 import { MessageCircle } from "lucide-react";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 
-const WHATSAPP_URL = "https://wa.me/5511964427943?text=Olá! Gostaria de solicitar um atendimento.";
+const WHATSAPP_URL = buildWhatsAppUrl("Olá! Gostaria de solicitar um atendimento.");
 
 export default function WhatsAppFloat() {
   return (
@@ -8,6 +10,7 @@ export default function WhatsAppFloat() {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackEvent("whatsapp_click", { local: "float_button" })}
       className="fixed bottom-6 right-6 z-40 w-14 h-14 rounded-full bg-accent text-accent-foreground 
         flex items-center justify-center shadow-xl shadow-green-600/30
         transition-all duration-200 hover:scale-110 hover:shadow-2xl hover:shadow-green-600/40 

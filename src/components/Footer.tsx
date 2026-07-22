@@ -1,8 +1,20 @@
 import { Link } from "react-router-dom";
 import { Mail, Phone, MessageCircle, MapPin } from "lucide-react";
 import logoKm from "@/assets/km-logo.png";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 
-const WHATSAPP_URL = "https://wa.me/5511964427943?text=Olá! Gostaria de solicitar um atendimento.";
+const WHATSAPP_URL = buildWhatsAppUrl("Olá! Gostaria de solicitar um atendimento.");
+
+const citiesServed = [
+  "Embu das Artes",
+  "Taboão da Serra",
+  "Itapecerica da Serra",
+  "Cotia",
+  "Osasco",
+  "Carapicuíba",
+  "Grande São Paulo",
+];
 
 const footerLinks = [
   {
@@ -30,19 +42,24 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-4">
-              <img src={logoKm} alt="Logo KM Segurança" className="w-11 h-11 object-contain" />
+              <img src={logoKm} alt="Logo KM Segurança do Trabalho e Meio Ambiente" className="w-11 h-11 object-contain" />
               <span className="text-lg font-bold text-green-50">
-                KM Segurança
+                KM Segurança do Trabalho e Meio Ambiente
               </span>
             </div>
-            <p className="text-green-300 text-sm leading-relaxed mb-6 max-w-xs">
+            <p className="text-green-300 text-sm leading-relaxed mb-4 max-w-xs">
               Consultoria especializada em Segurança do Trabalho e Meio Ambiente.
               Protegemos empresas, pessoas e operações com atendimento técnico e ágil.
+            </p>
+            <p className="text-green-300 text-xs leading-relaxed mb-6 max-w-xs">
+              <span className="font-semibold text-green-100">Atendemos: </span>
+              {citiesServed.join(", ")} e região.
             </p>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click", { local: "footer" })}
               className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-5 py-2.5 rounded-lg text-sm font-semibold 
                 transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.97]"
             >
@@ -95,7 +112,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-3 text-sm text-green-300">
                 <MapPin className="w-4 h-4 mt-0.5 text-green-400 shrink-0" />
-                <span>São Paulo, SP</span>
+                <span>São Paulo, SP — Grande São Paulo e região</span>
               </li>
             </ul>
           </div>
