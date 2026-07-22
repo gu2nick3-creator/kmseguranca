@@ -5,8 +5,10 @@ import PageBanner from "@/components/PageBanner";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Recycle, FileCheck, TreePine, Trash2, Leaf, MessageCircle, ShieldCheck, ClipboardList, LineChart } from "lucide-react";
 import envImg from "@/assets/environment-hero.jpg";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 
-const WHATSAPP_URL = "https://wa.me/5511964427943?text=Olá! Gostaria de informações sobre meio ambiente.";
+const WHATSAPP_URL = buildWhatsAppUrl("Olá! Gostaria de informações sobre meio ambiente.");
 
 const services = [
   { icon: Recycle, title: "PGRS e PGA", desc: "Elaboração de Planos de Gerenciamento de Resíduos Sólidos e Planos de Gestão Ambiental, atendendo às exigências legais e de licenciamento." },
@@ -91,6 +93,7 @@ export default function EnvironmentPage() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackEvent("whatsapp_click", { local: "environment_page" })}
                   className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-lg font-bold
                     shadow-lg shadow-green-600/20 hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.97]"
                 >

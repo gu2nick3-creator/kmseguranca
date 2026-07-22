@@ -5,8 +5,10 @@ import PageBanner from "@/components/PageBanner";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Shield, Target, Users, Award, MessageCircle } from "lucide-react";
 import aboutImg from "@/assets/about-team.jpg";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 
-const WHATSAPP_URL = "https://wa.me/5511964427943?text=Olá! Gostaria de conhecer mais sobre a empresa.";
+const WHATSAPP_URL = buildWhatsAppUrl("Olá! Gostaria de conhecer mais sobre a empresa.");
 
 const values = [
   { icon: Shield, title: "Proteção", desc: "Proteger pessoas, empresas e operações é a razão de existir da KM Segurança." },
@@ -51,6 +53,10 @@ export default function AboutPage() {
                     Mais do que documentos e laudos, entregamos segurança, prevenção e a certeza de que sua empresa 
                     está preparada para qualquer fiscalização ou demanda trabalhista.
                   </p>
+                  <p>
+                    Atendemos empresas em Embu das Artes, Taboão da Serra, Itapecerica da Serra, Cotia, 
+                    Osasco, Carapicuíba e demais cidades da Grande São Paulo.
+                  </p>
                 </div>
               </div>
 
@@ -80,6 +86,7 @@ export default function AboutPage() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("whatsapp_click", { local: "about_page" })}
                 className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-lg font-bold
                   shadow-lg shadow-green-600/20 hover:shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.97]"
               >

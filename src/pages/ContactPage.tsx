@@ -6,6 +6,7 @@ import PageBanner from "@/components/PageBanner";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { MessageCircle, Mail, Phone, Clock3, MapPin, FileCheck2, ArrowRight, ShieldCheck, Send, Building2, User2 } from "lucide-react";
 import aboutImg from "@/assets/about-team.jpg";
+import { trackEvent } from "@/lib/analytics";
 
 const WHATSAPP_NUMBER = "5511964427943";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent("Olá! Gostaria de solicitar um atendimento.")}`;
@@ -92,6 +93,7 @@ export default function ContactPage() {
                   href={card.href}
                   target={card.href.startsWith("http") ? "_blank" : undefined}
                   rel={card.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  onClick={() => trackEvent("contact_card_click", { local: "contact_page", canal: card.title })}
                   className="group rounded-3xl border border-border bg-card p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-xl"
                 >
                   <div className="w-14 h-14 rounded-2xl bg-green-100 flex items-center justify-center mb-5 group-hover:bg-accent transition-colors duration-300">
@@ -118,8 +120,8 @@ export default function ContactPage() {
                   <div className="flex items-start gap-3 text-sm text-foreground">
                     <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                     <div>
-                      <p className="font-semibold">Atendimento com base em São Paulo, SP</p>
-                      <p className="text-muted-foreground mt-1">Contato digital ágil para orientar sua empresa e iniciar o atendimento rapidamente.</p>
+                      <p className="font-semibold">Atendemos São Paulo e região</p>
+                      <p className="text-muted-foreground mt-1">Embu das Artes, Taboão da Serra, Itapecerica da Serra, Cotia, Osasco, Carapicuíba e demais cidades da Grande São Paulo.</p>
                     </div>
                   </div>
                 </div>
@@ -227,6 +229,7 @@ export default function ContactPage() {
                     href={whatsappHref}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("generate_lead", { local: "contact_form" })}
                     className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-accent px-6 py-4 text-base font-bold text-accent-foreground shadow-lg shadow-green-600/20 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl active:scale-[0.98]"
                   >
                     <Send className="w-5 h-5" />
