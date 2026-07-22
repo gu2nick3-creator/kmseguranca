@@ -1,12 +1,25 @@
-import { Shield, MessageCircle, ArrowRight, CheckCircle2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Shield, MessageCircle, ArrowRight, CheckCircle2, MapPin } from "lucide-react";
 import heroImg from "@/assets/hero-safety.jpg";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 
-const WHATSAPP_URL = "https://wa.me/5511964427943?text=Olá! Gostaria de solicitar um atendimento.";
+const WHATSAPP_URL = buildWhatsAppUrl("Olá! Gostaria de solicitar um atendimento.");
 
 const highlights = [
   "Conformidade com NRs",
   "Regularização ambiental",
   "Prevenção de multas",
+];
+
+const cities = [
+  "Embu das Artes",
+  "Taboão da Serra",
+  "Itapecerica da Serra",
+  "Cotia",
+  "Osasco",
+  "Carapicuíba",
+  "Grande São Paulo",
 ];
 
 export default function HeroSection() {
@@ -32,7 +45,7 @@ export default function HeroSection() {
           >
             <Shield className="w-4 h-4 text-green-300" />
             <span className="text-xs font-semibold text-green-200 uppercase tracking-wider">
-              Consultoria especializada em SST & Meio Ambiente
+              Consultoria especializada em Segurança, Saúde e Meio Ambiente
             </span>
           </div>
 
@@ -76,6 +89,7 @@ export default function HeroSection() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click", { local: "hero" })}
               className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-7 py-3.5 rounded-lg font-bold text-base
                 shadow-xl shadow-green-600/30 hover:shadow-2xl hover:shadow-green-600/40 
                 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]"
@@ -83,14 +97,26 @@ export default function HeroSection() {
               <MessageCircle className="w-5 h-5" />
               Falar no WhatsApp
             </a>
-            <a
-              href="/contato"
+            <Link
+              to="/contato"
+              onClick={() => trackEvent("solicitar_atendimento_click", { local: "hero" })}
               className="inline-flex items-center gap-2 bg-green-50/10 border border-green-50/30 text-green-50 px-7 py-3.5 rounded-lg font-bold text-base
                 hover:bg-green-50/20 transition-all duration-200 active:scale-[0.97]"
             >
               Solicitar atendimento
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
+          </div>
+
+          {/* Cidades atendidas */}
+          <div
+            className="flex items-start gap-2 mt-8 text-green-200 opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "1.15s" }}
+          >
+            <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-green-300" />
+            <p className="text-sm leading-relaxed">
+              Atendemos {cities.slice(0, -1).join(", ")} e {cities[cities.length - 1]}, além de cidades próximas.
+            </p>
           </div>
         </div>
       </div>

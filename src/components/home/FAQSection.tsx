@@ -9,7 +9,7 @@ import {
 const faqs = [
   {
     q: "Minha empresa é obrigada a ter esses documentos?",
-    a: "Sim. A legislação trabalhista e as Normas Regulamentadoras (NRs) do Ministério do Trabalho exigem que todas as empresas com empregados registrados mantenham documentação atualizada de SST, como PGR, LTCAT, PPP e laudos técnicos. O descumprimento pode gerar multas, interdições e passivos trabalhistas.",
+    a: "Sim. A legislação trabalhista e as Normas Regulamentadoras (NRs) do Ministério do Trabalho exigem que todas as empresas com empregados registrados mantenham documentação atualizada de segurança do trabalho, como PGR, LTCAT, PPP e laudos técnicos. O descumprimento pode gerar multas, interdições e passivos trabalhistas.",
   },
   {
     q: "Quais treinamentos são exigidos para minha operação?",

@@ -15,7 +15,7 @@ const services = [
   { icon: Thermometer, title: "Laudos Técnicos", desc: "Insalubridade e Periculosidade com medições quantitativas e qualitativas." },
   { icon: Gavel, title: "Perícias Trabalhistas", desc: "Suporte técnico e assistência em perícias judiciais de segurança do trabalho." },
   { icon: HardHat, title: "Gestão de Riscos", desc: "Acompanhamento contínuo das operações com identificação e mitigação de riscos." },
-  { icon: Cog, title: "Implantação de SST", desc: "Processos de segurança, prevenção e cultura de SST integrada à operação." },
+  { icon: Cog, title: "Implantação de Segurança do Trabalho", desc: "Processos de segurança, prevenção e cultura de segurança integrada à operação." },
 ];
 
 export default function ServicesSection() {

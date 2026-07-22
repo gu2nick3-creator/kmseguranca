@@ -1,8 +1,10 @@
 import { MessageCircle, Mail, ArrowRight } from "lucide-react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { trackEvent } from "@/lib/analytics";
 
-const WHATSAPP_URL = "https://wa.me/5511964427943?text=Olá! Gostaria de regularizar minha empresa.";
+const WHATSAPP_URL = buildWhatsAppUrl("Olá! Gostaria de regularizar minha empresa.");
 
 export default function FinalCTASection() {
   const ref = useScrollReveal("up");
@@ -31,6 +33,7 @@ export default function FinalCTASection() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", { local: "final_cta" })}
             className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-lg font-bold text-base
               shadow-xl shadow-green-600/30 hover:shadow-2xl hover:shadow-green-600/40 
               transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.97]"
@@ -40,6 +43,7 @@ export default function FinalCTASection() {
           </a>
           <a
             href="mailto:segurancakm1@gmail.com"
+            onClick={() => trackEvent("email_click", { local: "final_cta" })}
             className="inline-flex items-center gap-2 bg-green-50/10 border border-green-50/30 text-green-50 px-8 py-4 rounded-lg font-bold text-base
               hover:bg-green-50/20 transition-all duration-200 active:scale-[0.97]"
           >
@@ -48,6 +52,7 @@ export default function FinalCTASection() {
           </a>
           <Link
             to="/contato"
+            onClick={() => trackEvent("solicitar_atendimento_click", { local: "final_cta" })}
             className="inline-flex items-center gap-2 bg-green-50/10 border border-green-50/30 text-green-50 px-8 py-4 rounded-lg font-bold text-base
               hover:bg-green-50/20 transition-all duration-200 active:scale-[0.97]"
           >
