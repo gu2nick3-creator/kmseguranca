@@ -4,6 +4,7 @@ import { Menu, X, MessageCircle } from "lucide-react";
 import logoKm from "@/assets/km-logo.png";
 import { trackEvent } from "@/lib/analytics";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { RandomLetterSwap } from "@/components/ui/random-letter-swap";
 
 const navLinks = [
   { label: "Início", href: "/" },
@@ -71,7 +72,7 @@ export default function Navbar() {
                   ${active ? "after:scale-x-100" : "after:scale-x-0 hover:after:scale-x-100"}
                 `}
               >
-                {link.label}
+                <RandomLetterSwap label={link.label} staggerDuration={0.02} transition={{ duration: 0.4, type: "spring" }} />
               </Link>
             );
           })}

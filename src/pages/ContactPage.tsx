@@ -33,6 +33,13 @@ const contactCards = [
     href: "tel:+5511964427943",
     action: "Ligar agora",
   },
+  {
+    icon: Clock3,
+    title: "Horário",
+    detail: "Todos os dias, das 6h às 22h",
+    href: WHATSAPP_URL,
+    action: "Falar agora",
+  },
 ];
 
 const steps = [
@@ -86,7 +93,7 @@ export default function ContactPage() {
 
         <section className="section-padding bg-background">
           <div className="container mx-auto">
-            <div ref={cardsRef} className="grid md:grid-cols-3 gap-6">
+            <div ref={cardsRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {contactCards.map((card) => (
                 <a
                   key={card.title}
@@ -116,13 +123,21 @@ export default function ContactPage() {
               <div ref={imageRef} className="relative overflow-hidden rounded-3xl shadow-2xl shadow-green-900/10">
                 <img src={aboutImg} alt="Atendimento consultivo da KM Segurança" className="w-full h-[320px] lg:h-[450px] object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-green-950/70 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 bg-white/92 backdrop-blur-sm rounded-2xl p-5">
+                <div className="absolute bottom-6 left-6 right-6 bg-white/92 backdrop-blur-sm rounded-2xl p-5 space-y-3">
                   <div className="flex items-start gap-3 text-sm text-foreground">
                     <MapPin className="w-5 h-5 text-accent shrink-0 mt-0.5" />
                     <div>
                       <p className="font-semibold">Atendemos São Paulo e região</p>
-                      <p className="text-muted-foreground mt-1">Embu das Artes, Taboão da Serra, Itapecerica da Serra, Cotia, Osasco, Carapicuíba e demais cidades da Grande São Paulo.</p>
+                      <p className="text-muted-foreground mt-1">
+                        Segurança do trabalho e meio ambiente em Embu das Artes, Taboão da Serra, Itapecerica da Serra,
+                        Cotia, Osasco, Carapicuíba e demais cidades da Grande São Paulo. Atendimento externo, sem
+                        endereço fixo — vamos até sua empresa.
+                      </p>
                     </div>
+                  </div>
+                  <div className="flex items-start gap-3 text-sm text-foreground">
+                    <Clock3 className="w-5 h-5 text-accent shrink-0 mt-0.5" />
+                    <p className="text-muted-foreground">Todos os dias, das 6h às 22h.</p>
                   </div>
                 </div>
               </div>

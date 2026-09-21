@@ -1,10 +1,5 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { FaqScroller } from "@/components/ui/faq-scroller";
 
 const faqs = [
   {
@@ -39,8 +34,8 @@ export default function FAQSection() {
 
   return (
     <section className="section-padding bg-secondary/50">
-      <div className="container mx-auto max-w-3xl">
-        <div className="text-center mb-12" ref={titleRef}>
+      <div className="container mx-auto">
+        <div className="text-center mb-12 max-w-3xl mx-auto" ref={titleRef}>
           <span className="text-xs font-semibold text-accent uppercase tracking-widest">
             Dúvidas Frequentes
           </span>
@@ -50,22 +45,7 @@ export default function FAQSection() {
         </div>
 
         <div ref={accordionRef}>
-          <Accordion type="single" collapsible className="space-y-3">
-            {faqs.map((faq, i) => (
-              <AccordionItem
-                key={i}
-                value={`faq-${i}`}
-                className="bg-card rounded-xl border border-border px-6 shadow-sm data-[state=open]:shadow-md data-[state=open]:border-green-200 transition-all duration-300"
-              >
-                <AccordionTrigger className="text-left text-base font-semibold text-foreground hover:no-underline py-5">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <FaqScroller items={faqs.map((f) => ({ question: f.q, answer: f.a }))} />
         </div>
       </div>
     </section>

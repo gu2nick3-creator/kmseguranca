@@ -9,6 +9,7 @@ import TrainingSection from "@/components/home/TrainingSection";
 import EnvironmentSection from "@/components/home/EnvironmentSection";
 import DifferentialsSection from "@/components/home/DifferentialsSection";
 import SocialProofSection from "@/components/home/SocialProofSection";
+import TestimonialsSection from "@/components/home/TestimonialsSection";
 import FAQSection from "@/components/home/FAQSection";
 import FinalCTASection from "@/components/home/FinalCTASection";
 
@@ -25,6 +26,7 @@ export default function Index() {
         <EnvironmentSection />
         <DifferentialsSection />
         <SocialProofSection />
+        <TestimonialsSection />
         <FAQSection />
         <FinalCTASection />
       </main>

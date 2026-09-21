@@ -3,6 +3,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { trackEvent } from "@/lib/analytics";
+import GradientBackground from "@/components/ui/gradient-background";
 
 const WHATSAPP_URL = buildWhatsAppUrl("Olá! Gostaria de regularizar minha empresa.");
 
@@ -11,11 +12,8 @@ export default function FinalCTASection() {
 
   return (
     <section className="relative section-padding overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-green-800 via-primary to-green-900" />
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: `radial-gradient(circle at 20% 50%, hsl(152 60% 50% / 0.3) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, hsl(152 60% 50% / 0.2) 0%, transparent 50%)`
-      }} />
+      <GradientBackground className="opacity-90" />
+      <div className="absolute inset-0 bg-green-900/40" />
 
       <div className="container mx-auto relative z-10 text-center" ref={ref}>
         <h2
@@ -34,12 +32,15 @@ export default function FinalCTASection() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackEvent("whatsapp_click", { local: "final_cta" })}
-            className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-8 py-4 rounded-lg font-bold text-base
-              shadow-xl shadow-green-600/30 hover:shadow-2xl hover:shadow-green-600/40 
-              transition-all duration-200 hover:-translate-y-0.5 active:scale-[0.97]"
+            className="group inline-flex overflow-hidden transition-all duration-300 hover:-translate-y-0.5
+              hover:shadow-[0_0_25px_rgba(221,240,200,0.25)] rounded-full p-[1px] relative items-center justify-center"
           >
-            <MessageCircle className="w-5 h-5" />
-            Falar no WhatsApp
+            <span className="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#DDF0C8_100%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <span className="absolute inset-0 rounded-full bg-green-800 transition-opacity duration-300 group-hover:opacity-0" />
+            <span className="flex items-center gap-2 font-bold text-base text-green-50 bg-gradient-to-b from-green-800 to-green-900 py-4 px-8 rounded-full relative shadow-[inset_0_1px_0_rgba(255,255,255,0.15)]">
+              <MessageCircle className="w-5 h-5 relative z-10" />
+              <span className="relative z-10">Falar no WhatsApp</span>
+            </span>
           </a>
           <a
             href="mailto:segurancakm1@gmail.com"

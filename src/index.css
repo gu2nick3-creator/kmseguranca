@@ -106,6 +106,31 @@
   .section-padding-sm {
     @apply py-14 md:py-20 px-4;
   }
+
+  .faq-scroll-track {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--accent)) transparent;
+  }
+
+  .faq-scroll-track::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .faq-scroll-track::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .faq-scroll-track::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--accent) / 0.5);
+    border-radius: 999px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation-play-state: paused !important;
+  }
 }
 
 /* Scroll reveal base */
